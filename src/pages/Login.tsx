@@ -11,6 +11,7 @@ type Inputs = {
   userId: string;
   password: string;
 };
+// for login
 const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
@@ -22,6 +23,7 @@ const Login = () => {
       password: "admin123",
     },
   });
+  // for form data get
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const toastId = toast.loading("logging");
 
