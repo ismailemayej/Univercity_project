@@ -5,7 +5,11 @@ import Sidebar from "./Sidebar";
 import { useAppDispatch } from "../../redux/Hooks";
 import { logout } from "../../redux/features/Auth/authSlice";
 import { toast } from "sonner";
+import { useGetAllSemestersQuery } from "../../redux/features/AcademicSemesterApi/academicSemesterApi";
+
 const MainLayOut = () => {
+  const { data } = useGetAllSemestersQuery(0, {});
+  console.log("all semester data=>", data);
   const { Header, Content } = Layout;
   const dispatch = useAppDispatch();
   const handleLogout = () => {
@@ -17,7 +21,7 @@ const MainLayOut = () => {
       <Sidebar />
       <Layout style={{ marginLeft: 200 }}>
         <Header>
-          <Button onClick={handleLogout}>Logout</Button>{" "}
+          <Button onClick={handleLogout}>Logout</Button>
         </Header>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div

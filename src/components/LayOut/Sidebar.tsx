@@ -1,8 +1,9 @@
+import { useAppSelector } from "../../redux/Hooks";
+import { seleteCurrentUser } from "../../redux/features/Auth/authSlice";
 import { AdminRoute } from "../../routes/Admin.routes";
 import { FacultyRoute } from "../../routes/Faculty.routes";
 import { StudentRoute } from "../../routes/Student.routes";
 import { SidebarItemsGenarator } from "../../utils/SidebarItemsGanaretor";
-
 import { Layout, Menu } from "antd";
 const { Sider } = Layout;
 
@@ -13,9 +14,10 @@ const UserRole = {
 };
 
 const Sidebar = () => {
-  const role = "admin";
+  const user = useAppSelector(seleteCurrentUser);
+
   let SidebarItem;
-  switch (role) {
+  switch (user?.role) {
     case UserRole.ADMIN:
       SidebarItem = SidebarItemsGenarator(AdminRoute, UserRole.ADMIN);
       break;
@@ -25,7 +27,6 @@ const Sidebar = () => {
     case UserRole.STUDENT:
       SidebarItem = SidebarItemsGenarator(StudentRoute, UserRole.STUDENT);
       break;
-
     default:
       break;
   }
@@ -60,5 +61,4 @@ const Sidebar = () => {
     </Sider>
   );
 };
-
 export default Sidebar;
