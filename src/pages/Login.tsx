@@ -51,7 +51,7 @@ const Login = () => {
       </div>
       <div>
         <label htmlFor="">Password:</label>
-        <input {...register("password")} />
+        <input type="text" {...register("password")} />
       </div>
       <Button htmlType="submit">Login</Button>
     </form>

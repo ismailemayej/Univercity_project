@@ -14,13 +14,17 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQeryWithRefFreshToken = async (args, api, extraOption) => {
+const baseQeryWithRefreshToken = async (args, api, extraOption) => {
   const result = await baseQuery(args, api, extraOption);
-  console.log("basequery resuld=>", result);
+
+  if (result.error?.status === 401) {
+    // send refresh token
+    console.log("sending refresh token");
+  }
 };
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: baseQeryWithRefFreshToken,
+  baseQuery: baseQeryWithRefreshToken,
   endpoints: () => ({}),
 });
